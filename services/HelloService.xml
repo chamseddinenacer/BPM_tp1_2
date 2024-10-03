@@ -1,0 +1,5 @@
+<service name="HelloService" xmlns="http://ws.apache.org/ns/synapse">
+    <description>Service de test Hello</description>
+    <parameter name="className">com.example.axis2soapservice.HelloService</parameter>
+    <parameter name="allowedMethods">GET, POST</parameter>
+</service>

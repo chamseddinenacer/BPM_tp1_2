@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://example.com/axis2soapservice"
+             targetNamespace="http://example.com/axis2soapservice"
+             name="HelloService">
+
+    <types>
+        <xsd:schema targetNamespace="http://example.com/axis2soapservice">
+            <xsd:element name="sayHelloRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="name" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="sayHelloResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <message name="sayHelloRequestMessage">
+        <part name="parameters" element="tns:sayHelloRequest"/>
+    </message>
+    <message name="sayHelloResponseMessage">
+        <part name="parameters" element="tns:sayHelloResponse"/>
+    </message>
+
+    <portType name="HelloServicePortType">
+        <operation name="sayHello">
+            <input message="tns:sayHelloRequestMessage"/>
+            <output message="tns:sayHelloResponseMessage"/>
+        </operation>
+    </portType>
+
+    <binding name="HelloServiceBinding" type="tns:HelloServicePortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="sayHello">
+            <soap:operation soapAction="urn:sayHello"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="HelloService">
+        <port name="HelloServicePort" binding="tns:HelloServiceBinding">
+            <soap:address location="http://localhost:8080/HelloService"/>
+        </port>
+    </service>
+</definitions>

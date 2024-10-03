@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<axisconfig xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="axis2.repository">C:\Users\chamsa\eclipse-workspace\Axis2SOAPService\services\HelloService.wsdl</parameter>
+    <parameter name="axis2.log.level">INFO</parameter>
+    <!-- Autres paramètres -->
+</axisconfig>
